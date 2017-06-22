@@ -1,10 +1,10 @@
-# fence-calculator :)
+# fence calculator :)
 
 > A Vue.js hello world project
 
 ## Build Setup
 
-``` bash
+```sh
 # install dependencies
 $ yarn install
 
