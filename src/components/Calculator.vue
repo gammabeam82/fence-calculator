@@ -2,55 +2,63 @@
 	<div class="container-fluid calculator">
 		<div class="form-group row">
 			<label for="price-input" class="col-3 col-form-label">Стоимость куба</label>
-			<div class="col-4" v-bind:class="{ 'has-danger': price.length < 1 }">
-				<b-form-input v-model="price" class="form-control" id="price-input"></b-form-input>
+			<div class="col-4">
+				<b-form-input v-model="price" type="number" min="1" id="price-input"></b-form-input>
+				<span></span>
 			</div>
 		</div>
 
 		<div class="form-group row">
 			<label for="length-input" class="col-3 col-form-label">Длина доски, см</label>
-			<div class="col-4" v-bind:class="{ 'has-danger': length.length < 1 }">
-				<b-form-input v-model="length" class="form-control" id="length-input"></b-form-input>
+			<div class="col-4">
+				<b-form-input v-model="length" type="number" step="1" min="1" id="length-input"></b-form-input>
+				<span></span>
 			</div>
 		</div>
 
 		<div class="form-group row">
 			<label for="width-input" class="col-3 col-form-label">Ширина доски, см</label>
-			<div class="col-4" v-bind:class="{ 'has-danger': width.length < 1 }">
-				<b-form-input v-model="width" class="form-control" id="width-input"></b-form-input>
+			<div class="col-4">
+				<b-form-input v-model="width" type="number" step="1" min="1" id="width-input"></b-form-input>
+				<span></span>
 			</div>
 		</div>
 
 		<div class="form-group row">
 			<label for="thickness-input" class="col-3 col-form-label">Толщина доски, см</label>
-			<div class="col-4" v-bind:class="{ 'has-danger': thickness.length < 1 }">
-				<b-form-input v-model="thickness" class="form-control" id="thickness-input"></b-form-input>
+			<div class="col-4">
+				<b-form-input v-model="thickness" type="number" step="1" min="1" id="thickness-input"></b-form-input>
+				<span></span>
 			</div>
 		</div>
 
 		<div class="form-group row">
 			<label for="num-input" class="col-3 col-form-label">Количество досок</label>
-			<div class="col-4" v-bind:class="{ 'has-danger': num.length < 1 }">
-				<b-form-input v-model="num" class="form-control" id="num-input"></b-form-input>
+			<div class="col-4">
+				<b-form-input v-model="num" type="number" step=".001" min="1" id="num-input"></b-form-input>
+				<span></span>
 			</div>
 		</div>
 
 		<div class="form-group row">
 			<label for="cbm-input" class="col-3 col-form-label">Количество кубов</label>
 			<div class="col-4">
-				<b-form-input v-model="cbmComputed" class="form-control" id="cbm-input"></b-form-input>
+				<b-form-input v-model="cbmComputed" type="number" min="0" step="0.0001" id="cbm-input"></b-form-input>
+				<span></span>
 			</div>
 		</div>
 
 		<div class="form-group row">
 			<label for="fence-input" class="col-3 col-form-label">Длина забора, м</label>
 			<div class="col-4">
-				<b-form-input v-model="fenceLengthComputed" class="form-control" id="fence-input"></b-form-input>
+				<b-form-input v-model="fenceLengthComputed" type="number" step="0.0001" min="0.0001" id="fence-input"></b-form-input>
+				<span></span>
 			</div>
 		</div>
 
 		<div class="row actions">
-			<div class="col-7 text-right">
+			<div class="col-3"></div>
+			<div class="col-4">
 				<b-button v-on:click="reset()" variant="primary">
 					Сбросить
 				</b-button>
@@ -61,7 +69,7 @@
 			<div class="col-3 align-self-center">
 				<strong>Стоимость:</strong>
 			</div>
-			<div class="col-4 price text-right" v-bind:class="{ 'error' : hasError }">{{ totalPriceComputed }}</div>
+			<div class="col-4 price" v-bind:class="{ 'error' : hasError }">{{ totalPriceComputed }}</div>
 		</div>
 
 	</div>
@@ -89,7 +97,7 @@
     computed: {
       totalPriceComputed: function () {
         let value = this.cbmComputed * this.price
-        if (isNaN(value)) {
+        if (value === 0 || isNaN(value)) {
           value = 'Ошибка!'
           this.hasError = true
         } else {
@@ -99,11 +107,7 @@
       },
       cbmComputed: {
         get: function () {
-          let value = this.length * this.width * this.thickness * this.num / 1000000
-          if (isNaN(value)) {
-            value = 'Некорректные данные'
-          }
-          return value
+          return this.length * this.width * this.thickness * this.num / 1000000
         },
         set: function (newVal) {
           this.num = (newVal * 1000000) / (this.length * this.width * this.thickness)
@@ -111,21 +115,10 @@
       },
       fenceLengthComputed: {
         get: function () {
-          let value = this.width * this.num / 100
-          if (isNaN(value)) {
-            value = 'Некорректные данные'
-          }
-          return value
+          return this.width * this.num / 100
         },
         set: function (newVal) {
           this.num = newVal * 100 / this.width
-        }
-      }
-    },
-    watch: {
-      num: function (newVal) {
-        if (isNaN(newVal)) {
-          this.num = 'Некорректные данные'
         }
       }
     }
@@ -137,8 +130,11 @@
 	$color-error: #EA6153;
 	$color-success: #2ECC71;
 
-	@mixin bigger-font {
-		font-size: 300%;
+	@mixin validation($col, $cont) {
+		content: $cont;
+		color: $col;
+		padding-left: 10px;
+		font-size: 150%;
 	}
 
 	.calculator {
@@ -146,7 +142,7 @@
 	}
 
 	.price {
-		@include bigger-font;
+		font-size: 300%;
 		color: $color-success;
 	}
 
@@ -160,5 +156,18 @@
 
 	.error {
 		color: $color-error;
+	}
+
+	input:invalid + span:after {
+		@include validation($color-error, '✖');
+	}
+
+	input:valid + span:after {
+		@include validation($color-success, '✓');
+	}
+
+	input.form-control {
+		display: inline-block !important;
+		width: 80%;
 	}
 </style>
