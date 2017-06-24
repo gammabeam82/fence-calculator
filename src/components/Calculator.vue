@@ -3,7 +3,7 @@
 		<div class="form-group row">
 			<label for="price-input" class="col-3 col-form-label">Стоимость куба</label>
 			<div class="col-4">
-				<b-form-input v-model="price" type="number" min="1" id="price-input"></b-form-input>
+				<b-form-input v-model.number="price" type="number" min="1" id="price-input"></b-form-input>
 				<span></span>
 			</div>
 		</div>
@@ -11,7 +11,7 @@
 		<div class="form-group row">
 			<label for="length-input" class="col-3 col-form-label">Длина доски, см</label>
 			<div class="col-4">
-				<b-form-input v-model="length" type="number" step="1" min="1" id="length-input"></b-form-input>
+				<b-form-input v-model.number="length" type="number" step="1" min="1" id="length-input"></b-form-input>
 				<span></span>
 			</div>
 		</div>
@@ -19,7 +19,7 @@
 		<div class="form-group row">
 			<label for="width-input" class="col-3 col-form-label">Ширина доски, см</label>
 			<div class="col-4">
-				<b-form-input v-model="width" type="number" step="1" min="1" id="width-input"></b-form-input>
+				<b-form-input v-model.number="width" type="number" step="1" min="1" id="width-input"></b-form-input>
 				<span></span>
 			</div>
 		</div>
@@ -27,7 +27,7 @@
 		<div class="form-group row">
 			<label for="thickness-input" class="col-3 col-form-label">Толщина доски, см</label>
 			<div class="col-4">
-				<b-form-input v-model="thickness" type="number" step="1" min="1" id="thickness-input"></b-form-input>
+				<b-form-input v-model.number="thickness" type="number" step="1" min="1" id="thickness-input"></b-form-input>
 				<span></span>
 			</div>
 		</div>
@@ -35,7 +35,7 @@
 		<div class="form-group row">
 			<label for="num-input" class="col-3 col-form-label">Количество досок</label>
 			<div class="col-4">
-				<b-form-input v-model="num" type="number" step=".001" min="1" id="num-input"></b-form-input>
+				<b-form-input v-model.number="num" type="number" step=".001" min="1" id="num-input" required></b-form-input>
 				<span></span>
 			</div>
 		</div>
@@ -43,7 +43,7 @@
 		<div class="form-group row">
 			<label for="cbm-input" class="col-3 col-form-label">Количество кубов</label>
 			<div class="col-4">
-				<b-form-input v-model="cbmComputed" type="number" min="0" step="0.0001" id="cbm-input"></b-form-input>
+				<b-form-input v-model.number="cbmComputed" type="number" min="0" step="0.0001" id="cbm-input"></b-form-input>
 				<span></span>
 			</div>
 		</div>
@@ -51,7 +51,7 @@
 		<div class="form-group row">
 			<label for="fence-input" class="col-3 col-form-label">Длина забора, м</label>
 			<div class="col-4">
-				<b-form-input v-model="fenceLengthComputed" type="number" step="0.0001" min="0.0001" id="fence-input"></b-form-input>
+				<b-form-input v-model.number="fenceLengthComputed" type="number" step="0.0001" min="0.0001" id="fence-input"></b-form-input>
 				<span></span>
 			</div>
 		</div>
@@ -169,5 +169,16 @@
 	input.form-control {
 		display: inline-block !important;
 		width: 80%;
+	}
+
+	input[type=number] {
+		-moz-appearance: textfield;
+	}
+
+	input[type=number]::-webkit-inner-spin-button,
+	input[type=number]::-webkit-outer-spin-button {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
 	}
 </style>
