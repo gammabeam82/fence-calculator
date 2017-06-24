@@ -96,7 +96,7 @@
     },
     computed: {
       totalPriceComputed: function () {
-        let value = this.cbmComputed * this.price
+        let value = +(this.cbmComputed * this.price).toFixed(2)
         if (value === 0 || isNaN(value)) {
           value = 'Ошибка!'
           this.hasError = true
