@@ -51,7 +51,8 @@
 		<div class="form-group row">
 			<label for="fence-input" class="col-3 col-form-label">Длина забора, м</label>
 			<div class="col-4">
-				<b-form-input v-model.number="fenceLengthComputed" type="number" step="any" id="fence-input"></b-form-input>
+				<b-form-input v-model.number="fenceLengthComputed" type="number" step="any"
+							  id="fence-input"></b-form-input>
 				<span></span>
 			</div>
 		</div>
@@ -138,7 +139,7 @@
 	}
 
 	.calculator {
-		margin: 80px auto 0 auto;
+		margin: 40px auto 0 auto;
 	}
 
 	.price {
