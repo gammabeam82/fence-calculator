@@ -3276,7 +3276,7 @@ oauth-sign@~0.8.1:
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/oauth-sign/-/oauth-sign-0.8.2.tgz#46a6ab7f0aead8deae9ec0565780b7d4efeb9d43"
 
-object-assign@^4.0.1, object-assign@^4.1.0:
+object-assign@^4.0.1, object-assign@^4.1.0, object-assign@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
 
@@ -4260,6 +4260,12 @@ shelljs@^0.7.5, shelljs@^0.7.6:
     interpret "^1.0.0"
     rechoir "^0.6.2"
 
+shifty@^2.0.2:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/shifty/-/shifty-2.1.0.tgz#571c5be8bf3c2c38fb959bdd7d3149406bd303f2"
+  dependencies:
+    object-assign "^4.1.1"
+
 sigmund@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/sigmund/-/sigmund-1.0.1.tgz#3ff21f198cad2175f9f3b781853fd94d0d19b590"
@@ -4724,9 +4730,19 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
+vue-animate-number@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/vue-animate-number/-/vue-animate-number-0.4.1.tgz#1db6c4d5cdda63c0cef7966e58961b1bf1d74db1"
+  dependencies:
+    shifty "^2.0.2"
+
 vue-hot-reload-api@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.1.0.tgz#9ca58a6e0df9078554ce1708688b6578754d86de"
+
+vue-i18n@^7.0.5:
+  version "7.0.5"
+  resolved "https://registry.yarnpkg.com/vue-i18n/-/vue-i18n-7.0.5.tgz#f603962bff98a75f75ef1d46d26ecc8551ea68cf"
 
 vue-loader@^12.1.0:
   version "12.2.1"

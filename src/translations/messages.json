@@ -1,0 +1,36 @@
+{
+  "en": {
+    "message": {
+      "ru": "Ru",
+      "en": "En",
+      "error": "Error!",
+      "reset": "Reset",
+      "title": "Fence calculator",
+      "cbmPrice": "Price of cubic meter",
+      "length": "Board length, cm",
+      "width": "Board width, cm",
+      "thickness": "Board thickness, cm",
+      "boardsNum": "Number of boards",
+      "metersNum": "Number of cubic meters",
+      "fenceLength": "Length of fence, m",
+      "totalPrice": "Total price"
+    }
+  },
+  "ru": {
+    "message": {
+      "ru": "Рус",
+      "en": "Англ",
+      "error": "Ошибка!",
+      "reset": "Сброс",
+      "title": "Fence calculator",
+      "cbmPrice": "Стоимость кубометра",
+      "length": "Длина доски, см",
+      "width": "Ширина доски, см",
+      "thickness": "Толщина доски, см",
+      "boardsNum": "Количество досок",
+      "metersNum": "Количество кубометров",
+      "fenceLength": "Длина забора, м",
+      "totalPrice": "Общая стоимость"
+    }
+  }
+}

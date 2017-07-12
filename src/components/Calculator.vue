@@ -1,7 +1,7 @@
 <template>
-	<div class="container-fluid calculator">
+	<div class="container-fluid content">
 		<div class="form-group row">
-			<label for="price-input" class="col-3 col-form-label">Стоимость куба</label>
+			<label for="price-input" class="col-3 col-form-label">{{ $t("message.cbmPrice") }}</label>
 			<div class="col-4">
 				<b-form-input v-model.number="price" type="number" step="any" id="price-input"></b-form-input>
 				<span></span>
@@ -9,7 +9,7 @@
 		</div>
 
 		<div class="form-group row">
-			<label for="length-input" class="col-3 col-form-label">Длина доски, см</label>
+			<label for="length-input" class="col-3 col-form-label">{{ $t("message.length") }}</label>
 			<div class="col-4">
 				<b-form-input v-model.number="length" type="number" step="any" id="length-input"></b-form-input>
 				<span></span>
@@ -17,7 +17,7 @@
 		</div>
 
 		<div class="form-group row">
-			<label for="width-input" class="col-3 col-form-label">Ширина доски, см</label>
+			<label for="width-input" class="col-3 col-form-label">{{ $t("message.width") }}</label>
 			<div class="col-4">
 				<b-form-input v-model.number="width" type="number" step="any" id="width-input"></b-form-input>
 				<span></span>
@@ -25,7 +25,7 @@
 		</div>
 
 		<div class="form-group row">
-			<label for="thickness-input" class="col-3 col-form-label">Толщина доски, см</label>
+			<label for="thickness-input" class="col-3 col-form-label">{{ $t("message.thickness") }}</label>
 			<div class="col-4">
 				<b-form-input v-model.number="thickness" type="number" step="any" id="thickness-input"></b-form-input>
 				<span></span>
@@ -33,7 +33,7 @@
 		</div>
 
 		<div class="form-group row">
-			<label for="num-input" class="col-3 col-form-label">Количество досок</label>
+			<label for="num-input" class="col-3 col-form-label">{{ $t("message.boardsNum") }}</label>
 			<div class="col-4">
 				<b-form-input v-model.number="num" type="number" step="any" id="num-input" required></b-form-input>
 				<span></span>
@@ -41,7 +41,7 @@
 		</div>
 
 		<div class="form-group row">
-			<label for="cbm-input" class="col-3 col-form-label">Количество кубов</label>
+			<label for="cbm-input" class="col-3 col-form-label">{{ $t("message.metersNum") }}</label>
 			<div class="col-4">
 				<b-form-input v-model.number="cbmComputed" type="number" step="any" id="cbm-input"></b-form-input>
 				<span></span>
@@ -49,10 +49,9 @@
 		</div>
 
 		<div class="form-group row">
-			<label for="fence-input" class="col-3 col-form-label">Длина забора, м</label>
+			<label for="fence-input" class="col-3 col-form-label">{{ $t("message.fenceLength") }}</label>
 			<div class="col-4">
-				<b-form-input v-model.number="fenceLengthComputed" type="number" step="any"
-							  id="fence-input"></b-form-input>
+				<b-form-input v-model.number="fenceLengthComputed" type="number" step="any" id="fence-input"></b-form-input>
 				<span></span>
 			</div>
 		</div>
@@ -61,14 +60,14 @@
 			<div class="col-3"></div>
 			<div class="col-4">
 				<b-button v-on:click="reset()" variant="primary">
-					Сбросить
+          {{ $t("message.reset") }}
 				</b-button>
 			</div>
 		</div>
 
 		<div class="row result">
 			<div class="col-3 align-self-center">
-				<strong>Стоимость:</strong>
+				<strong>{{ $t("message.totalPrice") }}:</strong>
 			</div>
 			<div class="col-4 price" v-bind:class="{ 'error' : hasError }">{{ totalPriceComputed }}</div>
 		</div>
@@ -82,11 +81,11 @@
     data () {
       return {
         length: 200,
-        width: 15,
-        thickness: 4,
+        width: 17,
+        thickness: 3,
         num: 10,
         cbm: 0,
-        price: 80,
+        price: 120,
         hasError: false
       }
     },
@@ -99,7 +98,7 @@
       totalPriceComputed: function () {
         let value = +(this.cbmComputed * this.price).toFixed(2)
         if (value === 0 || isNaN(value)) {
-          value = 'Ошибка!'
+          value = this.$t('message.error')
           this.hasError = true
         } else {
           this.hasError = false
@@ -136,10 +135,6 @@
 		color: $col;
 		padding-left: 10px;
 		font-size: 150%;
-	}
-
-	.calculator {
-		margin: 40px auto 0 auto;
 	}
 
 	.price {
@@ -180,6 +175,5 @@
 	input[type=number]::-webkit-outer-spin-button {
 		-webkit-appearance: none;
 		-moz-appearance: none;
-		appearance: none;
 	}
 </style>
