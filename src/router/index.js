@@ -10,6 +10,9 @@ export default new Router({
       path: '/:locale',
       name: 'calculator',
       component: Calculator
+    },
+    {
+      path: '/', redirect: '/en'
     }
   ]
 })

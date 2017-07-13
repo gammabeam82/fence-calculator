@@ -6,32 +6,17 @@
           <h1>{{title}}</h1>
         </div>
       </div>
+      <div class="row">
+        <div class="col-7">
+          <router-link to="/en">
+            <b-button variant="secondary">En</b-button>
+          </router-link>
+          <router-link to="/ru">
+            <b-button variant="secondary">Ru</b-button>
+          </router-link>
+        </div>
+      </div>
     </div>
-
-    <b-navbar toggleable>
-
-      <b-nav-toggle target="nav_collapse"></b-nav-toggle>
-
-      <b-collapse is-nav id="nav_collapse">
-
-        <b-nav is-nav-bar>
-
-          <b-nav-item>
-            <router-link to="/en">
-              <b-button variant="secondary">{{ $t('message.en') }}</b-button>
-            </router-link>
-          </b-nav-item>
-
-          <b-nav-item>
-            <router-link to="/ru">
-              <b-button variant="secondary">{{ $t('message.ru') }}</b-button>
-            </router-link>
-          </b-nav-item>
-
-        </b-nav>
-      </b-collapse>
-    </b-navbar>
-
   </header>
 </template>
 
