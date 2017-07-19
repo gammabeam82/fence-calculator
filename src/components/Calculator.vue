@@ -13,6 +13,7 @@
 			<div class="col-4">
 				<b-form-input v-model.number="length" type="number" step="any" id="length-input"></b-form-input>
 				<span></span>
+        <b-form-input v-model.number="length" type="range" min="1" max="400" step="1"></b-form-input>
 			</div>
 		</div>
 
@@ -20,7 +21,8 @@
 			<label for="width-input" class="col-3 col-form-label">{{ $t("message.width") }}</label>
 			<div class="col-4">
 				<b-form-input v-model.number="width" type="number" step="any" id="width-input"></b-form-input>
-				<span></span>
+        <span></span>
+        <b-form-input v-model.number="width" type="range" min="1" max="50" step="1"></b-form-input>
 			</div>
 		</div>
 
@@ -29,6 +31,7 @@
 			<div class="col-4">
 				<b-form-input v-model.number="thickness" type="number" step="any" id="thickness-input"></b-form-input>
 				<span></span>
+        <b-form-input v-model.number="thickness" type="range" min="0.5" max="10" step="0.1"></b-form-input>
 			</div>
 		</div>
 
@@ -76,6 +79,8 @@
 </template>
 
 <script>
+  import _ from 'lodash'
+
   export default {
     name: 'calculator',
     data () {
@@ -109,17 +114,17 @@
         get: function () {
           return this.length * this.width * this.thickness * this.num / 1000000
         },
-        set: function (newVal) {
+        set: _.debounce(function (newVal) {
           this.num = (newVal * 1000000) / (this.length * this.width * this.thickness)
-        }
+        }, 100)
       },
       fenceLengthComputed: {
         get: function () {
           return this.width * this.num / 100
         },
-        set: function (newVal) {
+        set: _.debounce(function (newVal) {
           this.num = newVal * 100 / this.width
-        }
+        }, 100)
       }
     }
   }
@@ -176,4 +181,13 @@
 		-webkit-appearance: none;
 		-moz-appearance: none;
 	}
+
+  input[type=range] {
+    margin-top: 4px;
+  }
+
+  input[type=range]::-moz-focus-outer {
+    border: 0;
+  }
+
 </style>

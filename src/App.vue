@@ -10,6 +10,7 @@
 
   import Header from './components/Header.vue'
   import Footer from './components/Footer.vue'
+  import _ from 'lodash'
 
   const locales = ['en', 'ru']
 
@@ -18,10 +19,8 @@
     watch: {
       '$route' (to, from) {
         let locale = this.$route.params.locale
-        let index = locales.indexOf(locale)
-        if (locale.length === 2 && index !== -1) {
+        if (_.includes(locales, locale)) {
           this.$i18n.locale = locale
-          console.log(locale)
         } else {
           this.$i18n.locale = 'en'
         }
